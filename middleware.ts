@@ -1,4 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
 
 const isPublicRoute = createRouteMatcher([
   "/",
@@ -8,16 +9,18 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks/stripe",
 ]);
 
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware(async (auth, req) => {
+  // If it's a public route, allow access
   if (isPublicRoute(req)) return;
 
-  return auth().then((authResult) => {
-    if (!authResult.userId) {
-      // ✅ FIX: use clone() on the Response to avoid the "immutable" error
-      const signInUrl = new URL("/sign-in", req.url);
-      return Response.redirect(signInUrl).clone();
-    }
-  });
+  // For protected routes, check authentication
+  const { userId } = await auth();
+  
+  if (!userId) {
+    // Redirect to sign-in page
+    const signInUrl = new URL("/sign-in", req.url);
+    return NextResponse.redirect(signInUrl);
+  }
 });
 
 export const config = {
