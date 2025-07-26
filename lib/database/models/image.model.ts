@@ -8,7 +8,7 @@ export interface IImage extends Document {
   width?: number;
   height?: number;
   config?: object; 
-  transformationUrl?: string; 
+  transformationURL?: string; // Changed from transformationUrl to transformationURL
   aspectRatio?: string;
   color?: string;
   prompt?: string;
@@ -29,7 +29,7 @@ const ImageSchema = new Schema({
   width: { type: Number },
   height: { type: Number },
   config: { type: Object },
-  transformationUrl: { type: String },
+  transformationURL: { type: String }, // Changed from transformationUrl to transformationURL
   aspectRatio: { type: String },
   color: { type: String },
   prompt: { type: String },
@@ -40,4 +40,4 @@ const ImageSchema = new Schema({
 
 const Image = models?.Image || model('Image', ImageSchema);
 
-export default Image; 
+export default Image;
