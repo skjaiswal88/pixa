@@ -4,11 +4,15 @@ import { getAllImages } from "@/lib/actions/image.actions"
 import Image from "next/image"
 import Link from "next/link"
 
-const Home = async ({ searchParams }: SearchParamProps) => {
-  // Extract values directly - this works with both old and new Next.js
-  const params = searchParams instanceof Promise ? await searchParams : searchParams;
-  const page = Number(params?.page) || 1;
-  const searchQuery = (params?.query as string) || '';
+interface PageProps {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}
+
+const Home = async ({ searchParams }: PageProps) => {
+  // Await the searchParams Promise for Next.js 15+
+  const resolvedSearchParams = await searchParams;
+  const page = Number(resolvedSearchParams?.page) || 1;
+  const searchQuery = (resolvedSearchParams?.query as string) || '';
 
   const images = await getAllImages({ page, searchQuery})
 
