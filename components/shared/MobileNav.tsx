@@ -3,8 +3,10 @@
 import {
   Sheet,
   SheetContent,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
 
 import { navLinks } from "@/constants"
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
@@ -42,6 +44,9 @@ const MobileNav = () => {
               />
             </SheetTrigger>
             <SheetContent className="sheet-content sm:w-64">
+              <VisuallyHidden>
+                <SheetTitle>Navigation Menu</SheetTitle>
+              </VisuallyHidden>
               <>
                 <Image 
                   src="/assets/images/logo-text.svg"
