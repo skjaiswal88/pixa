@@ -113,9 +113,10 @@ declare type RemoveUrlQueryParams = {
   keysToRemove: string[];
 };
 
+// Updated for Next.js 15+ - params and searchParams are now Promises
 declare type SearchParamProps = {
-  params: { id: string; type: TransformationTypeKey };
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<{ id: string; type: TransformationTypeKey }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 declare type TransformationFormProps = {

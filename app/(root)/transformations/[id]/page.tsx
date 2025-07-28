@@ -9,10 +9,13 @@ import { getImageById } from "@/lib/actions/image.actions";
 import { getImageSize } from "@/lib/utils";
 import { DeleteConfirmation } from "@/components/shared/DeleteConfirmation";
 
-const ImageDetails = async ({ params }: SearchParamProps) => {
-  // Handle both sync and async params for Next.js version compatibility
-  const resolvedParams = await Promise.resolve(params);
-  const { id } = resolvedParams;
+interface ImageDetailsProps {
+  params: Promise<{ id: string }>
+}
+
+const ImageDetails = async ({ params }: ImageDetailsProps) => {
+  // Await the params Promise for Next.js 15+
+  const { id } = await params;
   const user = await currentUser();
   const userId = user?.id;
 

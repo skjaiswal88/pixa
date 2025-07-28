@@ -5,12 +5,15 @@ import { getUserById } from '@/lib/actions/user.actions';
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 
-const AddTransformationTypePage = async ({ params }: SearchParamProps) => {
+interface AddTransformationPageProps {
+  params: Promise<{ type: TransformationTypeKey }>
+}
+
+const AddTransformationTypePage = async ({ params }: AddTransformationPageProps) => {
   const { userId } = await auth();
   
-  // Handle params properly - check if it's a Promise or not
-  const resolvedParams = await Promise.resolve(params);
-  const { type } = resolvedParams;
+  // Await the params Promise for Next.js 15+
+  const { type } = await params;
   
   // console.log('Clerk userId:', userId); // Debug logging
   

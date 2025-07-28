@@ -7,10 +7,13 @@ import { transformationTypes } from "@/constants";
 import { getUserById } from "@/lib/actions/user.actions";
 import { getImageById } from "@/lib/actions/image.actions";
 
-const Page = async ({ params }: SearchParamProps) => {
-  // Handle both sync and async params for Next.js version compatibility
-  const resolvedParams = await Promise.resolve(params);
-  const { id } = resolvedParams;
+interface UpdatePageProps {
+  params: Promise<{ id: string }>
+}
+
+const Page = async ({ params }: UpdatePageProps) => {
+  // Await the params Promise for Next.js 15+
+  const { id } = await params;
   const user = await currentUser();
   const userId = user?.id;
 
