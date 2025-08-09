@@ -1,7 +1,7 @@
 "use client"
 
 import { navLinks } from '@/constants'
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
+import { SignedIn, SignedOut, UserButton, useAuth } from '@clerk/nextjs'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -9,12 +9,13 @@ import { Button } from '../ui/button'
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const { userId } = useAuth();
 
   return (
     <aside className="sidebar">
       <div className="flex size-full flex-col gap-4">
         <Link href="/" className="sidebar-logo">
-          <Image src="/assets/images/logo-text.svg" alt="logo" width={180} height={28} />
+          <Image src="/assets/images/logo.png" alt="logo" width={180} height={28} />
         </Link>
 
         <nav className="sidebar-nav">
@@ -41,7 +42,6 @@ const Sidebar = () => {
                 )
               })}
               </ul>
-
 
             <ul className="sidebar-nav_elements">
               {navLinks.slice(6).map((link) => {
@@ -73,7 +73,9 @@ const Sidebar = () => {
 
           <SignedOut>
             <Button asChild className="button bg-purple-gradient bg-cover">
-              <Link href="/sign-in">Login</Link>
+              <Link href="/sign-in" style={{ color: userId ? 'white' : '#6b7280' }}>
+                Login
+              </Link>
             </Button>
           </SignedOut>
         </nav>

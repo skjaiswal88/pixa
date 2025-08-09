@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Sans } from "next/font/google";
-import "@/app/globals.css"; // ✅ Correct location
+import "@/app/globals.css";
 import { cn } from "@/lib/utils";
 import { ClerkProvider } from "@clerk/nextjs";
-// import { Toaster } from 'sonner';
 
 const IBMPlex = IBM_Plex_Sans({
   variable: "--font-ibm-plex",
   subsets: ["latin"],
-  weight:['400','500','600','700']
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -22,19 +21,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider appearance={{
-      variables:{colorPrimary: '#624cf5'}
-    }}>
+    <ClerkProvider
+      appearance={{
+        variables: { colorPrimary: "#624cf5" },
+      }}
+      signInFallbackRedirectUrl="/" // ✅ For sign-in redirect
+      signUpFallbackRedirectUrl="/" // ✅ For sign-up redirect
+    >
       <html lang="en">
         <body
-          className={cn("font-IBMPlex antialiased", IBMPlex.variable)}
+          className={cn(
+            "min-h-screen w-full bg-background lg:flex-row font-IBMPlex antialiased",
+            IBMPlex.variable
+          )}
         >
           {children}
-          {/* <Toaster 
-            position="top-right" 
-            richColors 
-            closeButton 
-          /> */}
         </body>
       </html>
     </ClerkProvider>

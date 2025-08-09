@@ -1,6 +1,7 @@
 import { Collection } from "@/components/shared/Collection"
 import { navLinks } from "@/constants"
 import { getAllImages } from "@/lib/actions/image.actions"
+import { auth } from "@clerk/nextjs/server"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -9,6 +10,8 @@ interface PageProps {
 }
 
 const Home = async ({ searchParams }: PageProps) => {
+  const { userId } = await auth()
+  
   // Await the searchParams Promise for Next.js 15+
   const resolvedSearchParams = await searchParams;
   const page = Number(resolvedSearchParams?.page) || 1;
@@ -19,11 +22,14 @@ const Home = async ({ searchParams }: PageProps) => {
   return (
     <>
       <section className="home">
-        <h1 className="home-heading">
+        <h1 
+          className="home-heading" 
+          style={{ color: userId ? 'white' : '#6b7280' }}
+        >
           Unleash Your Creative Vision with Pixa
         </h1>
         <ul className="flex-center w-full gap-20">
-          {navLinks.slice(1, 5).map((link) => (
+          {navLinks.slice(1, 6).map((link) => (
             <Link
               key={link.route}
               href={link.route}
@@ -32,7 +38,12 @@ const Home = async ({ searchParams }: PageProps) => {
               <li className="flex-center w-fit rounded-full bg-white p-4">
                 <Image src={link.icon} alt="image" width={24} height={24} />
               </li>
-              <p className="p-14-medium text-center text-white">{link.label}</p>
+              <p 
+                className="p-14-medium text-center" 
+                style={{ color: userId ? 'white' : '#6b7280' }}
+              >
+                {link.label}
+              </p>
             </Link>
           ))}
         </ul>
