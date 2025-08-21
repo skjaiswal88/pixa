@@ -73,8 +73,8 @@ const config: Config = {
         IBMPlex: ["var(--font-ibm-plex)"],
       },
       backgroundImage: {
-        "purple-gradient": "url('/assets/images/banner-bg.PNG')",
-        banner: "url('/assets/images/banner-bg.PNG')",
+        "purple-gradient": "url('/assets/images/banner-bg.png')",
+        banner: "url('/assets/images/banner-bg.png')",
       },
       borderRadius: {
         lg: "var(--radius)",
