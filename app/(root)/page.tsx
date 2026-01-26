@@ -24,11 +24,12 @@ const Home = async ({ searchParams }: PageProps) => {
       <section className="home">
         <h1 
           className="home-heading" 
-          style={{ color: userId ? 'white' : '#6b7280' }}
+          style={{ color: userId ? 'white' : '#ffffff' }}
         >
           Unleash Your Creative Vision with Pixa
         </h1>
-        <ul className="flex-center w-full gap-20">
+        {/* Hide on mobile (hidden), show on medium screens and up (md:flex) */}
+        <ul className="hidden md:flex md:justify-center md:items-center w-full gap-20">
           {navLinks.slice(1, 6).map((link) => (
             <Link
               key={link.route}
@@ -49,7 +50,7 @@ const Home = async ({ searchParams }: PageProps) => {
         </ul>
       </section>
 
-      <section className="sm:mt-12">
+      <section className="mt-12">
         <Collection 
           hasSearch={true}
           images={images?.data}
