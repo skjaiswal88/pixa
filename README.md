@@ -117,16 +117,22 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🗝️ Key Challenges Solved
+## 🗝️ Key Achievements & Technical Highlights
 
-### 1. **Robust Webhook Synchronization**
-Keep user data in sync across systems was critical. We implemented secure webhooks for **Clerk** (user creation) and **Stripe** (payments).
-- *Solution*: A robust webhook handler (`api/webhooks/...`) verifies signatures (using `svix` for Clerk and `stripe` SDK) before safely updating the MongoDB database to ensure the local user record matches the external provider state.
+### 1. **High-Performance & SEO Optimized**
+Building a rich SaaS application often compromises speed, but Pixa was designed for performance from day one.
+- *Achievement*: Developed a modern full-stack architecture that achieves a **91 Lighthouse Performance score** and a **perfect 100 SEO score**.
+- *Tech*: Optimized Next.js App Router caching, image optimization, and efficient bundle splitting.
 
-### 2. **Secure Credit System**
-Preventing unauthorized usage was a priority.
-- *Solution*: Implemented optimistic UI updates for better UX but strictly validated credit balances on the server (Server Actions) before authorizing any Cloudinary transformation request.
+### 2. **Complex AI Integration**
+Delivering varied AI capabilities without overwhelming the client-side.
+- *Achievement*: Successfully powered 5 core image transformation features (generative fill, object/background removal, recoloring, and restoration).
+- *Solution*: Integrated **Cloudinary’s AI APIs** for server-side processing and optimized content delivery, contributing to a **Largest Contentful Paint (LCP) of just 1.2 seconds**.
 
-### 3. **Efficient Search & Pagination**
-Searching through thousands of images with complex filters (tags, titles, types).
-- *Solution*: Leveraged Cloudinary's Search API for handling queries (`expression`) and mapped the results back to MongoDB records for metadata consistency and pagination, creating a snappy search experience.
+### 3. **Secure Financial & User Operations**
+Managing user credits and authentication across distributed systems.
+- *Solution*: Constructed a seamless system by integrating **Clerk** for auth and **Stripe** for payments. utilized **secure webhooks** to automate real-time synchronization between Stripe events (purchases) and the MongoDB database, ensuring users receive credits instantly.
+
+### 4. **Deep Federated Search**
+Finding images based on content rather than just simple text tags.
+- *Solution*: Designed an advanced federated search system that first queries **Cloudinary’s media-native search API** (to find images by AI-tag/content), and then uses those results to perform a targeted and efficient lookup in **MongoDB** for associated application metadata.
