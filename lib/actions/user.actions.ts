@@ -29,7 +29,7 @@ export async function getUserById(userId: string) {
     if (!user) {
       // DEBUG: Log failure details
       console.error(`[getUserById] User not found using clerkId: ${userId}`);
-      console.log(`[getUserById] Database connection state: ${require('mongoose').connection.readyState}`);
+      console.log(`[getUserById] Connection Cache Status: ${JSON.stringify(global.mongoose)}`);
       throw new Error("User not found");
     }
 
