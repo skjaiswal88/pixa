@@ -36,6 +36,10 @@
 - **Payments**: Stripe
 - **Auth**: Clerk
 
+### Quality Assurance
+- **Monitoring**: Sentry (Error Tracking & Performance)
+- **Testing**: Playwright (End-to-End Testing)
+
 ---
 
 ## 🏗️ Architecture
@@ -112,6 +116,12 @@ NEXT_PUBLIC_SERVER_URL=http://localhost:3000
 npm run dev
 ```
 Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### 5. Run Tests
+Verify the application is working correctly by running the End-to-End test suite.
+```bash
+npx playwright test
+```
 
 ---
 
