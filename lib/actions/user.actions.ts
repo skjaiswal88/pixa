@@ -26,12 +26,7 @@ export async function getUserById(userId: string) {
 
     const user = await User.findOne({ clerkId: userId });
 
-    if (!user) {
-      // DEBUG: Log failure details
-      console.error(`[getUserById] User not found using clerkId: ${userId}`);
-      console.log(`[getUserById] Connection Cache Status: ${JSON.stringify(global.mongoose)}`);
-      throw new Error("User not found");
-    }
+    if (!user) throw new Error("User not found");
 
     return JSON.parse(JSON.stringify(user));
   } catch (error) {
