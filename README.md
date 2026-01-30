@@ -49,12 +49,10 @@ graph TD
     NextApp -->|Image Upload/Transform| Cloudinary[Cloudinary API]
     NextApp -->|Checkout| Stripe[Stripe Checkout]
     
-    subgraph "Webhooks & Sync"
-        Clerk[Clerk Auth] -->|User Created/Updated| Hook1[Clerk Webhook API]
-        Stripe -->|Payment Success| Hook2[Stripe Webhook API]
-        Hook1 -->|Sync Data| Mongo
-        Hook2 -->|Update Credits| Mongo
-    end
+    Clerk[Clerk Auth] -->|User Created/Updated| Hook1[Clerk Webhook API]
+    Stripe -->|Payment Success| Hook2[Stripe Webhook API]
+    Hook1 -->|Sync Data| Mongo
+    Hook2 -->|Update Credits| Mongo
 ```
 
 ---
