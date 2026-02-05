@@ -13,6 +13,22 @@ const IBMPlex = IBM_Plex_Sans({
 export const metadata: Metadata = {
   title: "Pixa",
   description: "AI-driven image manipulator",
+  metadataBase: new URL("https://pixa.vercel.app"), // Replace with your actual deployed domain if different
+  keywords: ["AI", "Image Generator", "Image Restoration", "Generative Fill", "Object Removal"],
+  authors: [{ name: "Pixa Team" }],
+  openGraph: {
+    title: "Pixa - AI Image Manipulator",
+    description: "Unleash your creative vision with Pixa's AI-driven image transformation tools.",
+    url: "https://pixa.vercel.app",
+    siteName: "Pixa",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pixa",
+    description: "AI-driven image manipulator and transformer.",
+  },
 };
 
 export default function RootLayout({
