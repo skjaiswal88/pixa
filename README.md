@@ -144,3 +144,28 @@ Managing user credits and authentication across distributed systems.
 ### 4. **Deep Federated Search**
 Finding images based on content rather than just simple text tags.
 - *Solution*: Designed an advanced federated search system that first queries **Cloudinary’s media-native search API** (to find images by AI-tag/content), and then uses those results to perform a targeted and efficient lookup in **MongoDB** for associated application metadata.
+
+### 5. **Robust CI/CD & DevOps**
+Ensuring code quality and reliability through automated pipelines.
+- *Achievement*: Implemented a full **CI/CD pipeline using GitHub Actions** that automatically builds, lints, and tests every commit.
+- *Testing*: Integrated **Playwright** for End-to-End (E2E) testing to verify critical user flows before deployment.
+- *Monitoring*: Deployed **Sentry** for real-time error tracking and performance monitoring in production.
+
+### 6. **Social Media & SEO Optimized**
+- *Achievement*: Configured dynamic **Open Graph (OG)** tags and Twitter Cards, ensuring that links shared on social platforms (WhatsApp, LinkedIn, Twitter) display a professional preview with the brand logo and description.
+
+## ⚡ CI/CD Pipeline
+
+The project uses **GitHub Actions** for Continuous Integration.
+- **Trigger**: Pushes to `master` and Pull Requests.
+- **Jobs**:
+    1.  **Build & Lint**: Verifies strict type safety (TypeScript) and code style.
+    2.  **Test**: Runs the Playwright E2E suite against a headless browser.
+
+## 📈 Monitoring & Quality Assurance
+
+- **Sentry**: Connected to the Next.js App Router to capture server-side exceptions and client-side rendering errors.
+- **Playwright**: Automates the testing of:
+    - Landing page availability.
+    - Authentication redirects.
+    - Critical UI element visibility.
